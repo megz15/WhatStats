@@ -4,7 +4,7 @@ View frequency of messages by different contacts in group/individual WhatsApp ch
 ![WhatStats Demo](/demo.png)
 
 ## ABOUT PROJECT
-WhatStats v1.0 by Meghraj Goswami. Can be used to view frequency of individual or group chats. It's in really a primitive state but I hope to improve it further. 
+WhatStats v1.0. Can be used to view frequency of individual or group chats. It's in really a primitive state but I hope to improve it further. 
 <br>Tasks:<br>
 - [x] Actually start with the project
 - [ ] Implementing GUI using tkinter
@@ -33,3 +33,6 @@ This would all come slowly as I'm implementing features as I'm learning them. Fe
     > Note: Preferably don't rename the text file for optimal results
 3. Press enter and wait for graph to form
 4. Use the buttons at the bottom of the Window to better view the graph (pan/zoom/reset) using Left and Right Mouse Buttons, X, Y and Ctrl Keys
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+Made with :heart: by Meghraj Goswami
