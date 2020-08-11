@@ -6,22 +6,46 @@ try:
     fname = input("Enter full path to txt file: ")
     f = open(fname,encoding="utf-8")
     g = open(fname,encoding="utf-8")
+    h = open(fname,encoding="utf-8")
 except FileNotFoundError:
     print("File not found, try again")
     exit()
-dates_list, date_names, user_dict, tot_dates = [], [], {}, {}
+dates_list, date_names, date_types , user_dict, tot_dates, test_lst = [], [], [], {}, {}, []
 #***************************************************
+days_not_months=[13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+for l in h:
+    if l.find(':',17)==-1:
+        continue
+    try:
+        test_lst.append(int(l[0:l.find('/')]))
+    except ValueError:
+        continue
+
+for i in days_not_months:
+    if i in test_lst:
+        date_types=['%d/%m/%y','%d/%m/%Y']
+    else:
+        date_types=['%m/%d/%y','%m/%d/%Y']
+
+def find_date(o_date):
+    for typ in date_types:
+        try:
+            a=datetime.datetime.strptime(o_date,typ).date()
+            return a.strftime('%b%d,%y')
+        except ValueError:
+            pass
+
 for j in f:
     if j.find(':',17)==-1:
         continue
     try:
         abc=j[j.find('- ')+2:j.find(': '):]
-        try:
-            a=datetime.datetime.strptime(j[0:j.find(',')], '%m/%d/%Y')
-        except ValueError:
-            a=datetime.datetime.strptime(j[0:j.find(',')], '%d/%m/%Y')
-        dates_list.append(a.strftime('%b%d,%y'))
-        date_names.append(a.strftime('%b%d,%y')+abc)
+        a=j[0:j.find(',')]
+        if find_date(a)!=None:
+            dates_list.append(find_date(a))
+            date_names.append(find_date(a)+abc)
+        else:
+            continue
         if abc in list(user_dict.keys()):
             pass
         else:
@@ -43,12 +67,9 @@ for i in g:
     try:
         for j in list(user_dict.keys()):
             temp_i=i[i.find('- ')+2:i.find(': '):]
-            try:
-                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%m/%d/%Y')
-            except ValueError:
-                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%d/%m/%Y')
+            date_i=i[0:i.find(',')]
             if temp_i==j:
-                z.append(date_i.strftime('%b%d,%y')+j)
+                z.append(find_date(date_i)+j)
     except ValueError:
         continue
 for i in list(dict.fromkeys(z)):
