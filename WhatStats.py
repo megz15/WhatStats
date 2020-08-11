@@ -12,14 +12,14 @@ except FileNotFoundError:
 dates_list, date_names, user_dict, tot_dates = [], [], {}, {}
 #***************************************************
 for j in f:
-    if j.find(':',13)==-1:
+    if j.find(':',17)==-1:
         continue
     try:
         abc=j[j.find('- ')+2:j.find(': '):]
         try:
-            a=datetime.datetime.strptime(j[0:j.find(',')], '%m/%d/%y')
+            a=datetime.datetime.strptime(j[0:j.find(',')], '%m/%d/%Y')
         except ValueError:
-            a=datetime.datetime.strptime(j[0:j.find(',')], '%d/%m/%y')
+            a=datetime.datetime.strptime(j[0:j.find(',')], '%d/%m/%Y')
         dates_list.append(a.strftime('%b%d,%y'))
         date_names.append(a.strftime('%b%d,%y')+abc)
         if abc in list(user_dict.keys()):
@@ -38,15 +38,15 @@ for i in range(diff.days + 1):
 #***************************************************
 z=[]
 for i in g:
-    if i.find(':',13)==-1:
+    if i.find(':',17)==-1:
         continue
     try:
         for j in list(user_dict.keys()):
             temp_i=i[i.find('- ')+2:i.find(': '):]
             try:
-                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%m/%d/%y')
+                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%m/%d/%Y')
             except ValueError:
-                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%d/%m/%y')
+                date_i=datetime.datetime.strptime(i[0:i.find(',')], '%d/%m/%Y')
             if temp_i==j:
                 z.append(date_i.strftime('%b%d,%y')+j)
     except ValueError:
