@@ -10,6 +10,7 @@ WhatStats v1.0. Can be used to view frequency of individual or group chats. It's
 - [ ] Implementing GUI using tkinter
 - [ ] Plot frequency on a daily/weekly/monthly/annual basis
 - [ ] Create graph for frequency of particular string in chat
+- [ ] Show misc info like most frequently used characters/phrases, most active users and days/times with most activity etc
 - [ ] Live plotting of graph
 
 This would all come slowly as I'm implementing features as I'm learning them. Feedback would be appreciated.
