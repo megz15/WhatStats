@@ -34,8 +34,8 @@ This would all come slowly as I'm implementing features as I'm learning them. Fe
 3. Press enter and wait for graph to form
 4. Use the buttons at the bottom of the Window to better view the graph (pan/zoom/reset) using Left and Right Mouse Buttons, X, Y and Ctrl Keys
 
-
-
+\
+\
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)<br>
 Made with :heart: by Meghraj Goswami<br>
 For Terms of Service visit https://bit.ly/3aeIVfl
