@@ -13,7 +13,7 @@ WhatStats v1.0. Can be used to view frequency of individual or group chats. It's
 - [ ] Live plotting of graph
 
 This would all come slowly as I'm implementing features as I'm learning them. Feedback would be appreciated.
-\
+
 ## REQUIREMENTS:
 1. [Python 3](https://www.python.org/downloads/): I use 3.7.7
 2. [Matplotlib](https://matplotlib.org/): Plotting library for python. Install it using ```pip install matplotlib``` in Command Prompt.
@@ -23,7 +23,7 @@ This would all come slowly as I'm implementing features as I'm learning them. Fe
     - Tap the three-dot menu button, go to 'More' and select 'Export chat'<br>
     - Select 'Without Media'<br>
     - Move the exported text file to your computer<br>
-\
+
 ## USAGE:
 1. Open *'WhatStats.py'*
 2. Enter the path and filename of the exported chat text file,<br>
