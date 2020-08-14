@@ -1,3 +1,5 @@
+#V_1.2 by Meghraj Goswami#
+
 #---Import Libraries Create TK window & Declare Variables---#
 from tkinter import * 
 from tkinter.ttk import *
@@ -13,7 +15,7 @@ days_not_months = [13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
 dates_list, date_names, date_types, d_or_m = [],[],[],[]
 tot_ints, user_dict = {},{}
 
-#---Open Text File---#
+#---Open Text File and create Date Lists---#
 def open_file():
     global f
     file = askopenfile(mode='r',filetypes=[('WA Chat Export Text Files','*.txt')],title='Open WhatsApp Chat Export txt file')
@@ -36,30 +38,30 @@ def open_file():
                 abc=k[k.find('- ')+2:k.find(': '):]
                 q=k[:k.find(', ')]
                 if calc_date(q)!=None:
-                    dates_list.append(calc_date(q)) #Get time
-                    date_names.append(calc_date(q)+abc)
+                    dates_list.append(calc_date(q)) #Get dates
+                    date_names.append(calc_date(q)+abc) #Get name-date combo
                 else:
                     continue
                 if abc in list(user_dict.keys()):
                     pass
                 else:
-                    user_dict[abc]={}
+                    user_dict[abc]={} #Add members
             except ValueError:
                 continue
     for i in list(dict.fromkeys(date_names)):
         for j in list(user_dict.keys()):
-            res = [x.isdigit() for x in i[::-1]].index(True)
+            res = [x.isdigit() for x in i[::-1]].index(True) #Find member name from name-date combo
             if j==i[len(i)-res::]:
                 for za in list(calc_interval(dates_list).keys()):
                     if i[:len(i)-res:]==za:
-                        user_dict[j].update({za:date_names.count(i)})
+                        user_dict[j].update({za:date_names.count(i)}) #Update number of msgs per user for each day
             
 
-#---""---#
+#---Plot Graph---#
 def plot_graph():
     y=[]
     for i in tot_ints:
-        y.append(dates_list.count(i))
+        y.append(dates_list.count(i)) #y-ticks (for total messages)
     if (f.name).find("WhatsApp Chat with ")!=-1:
         t0 = (f.name)[(f.name).find("WhatsApp Chat with ")::]
         t0 = t0.replace('Chat with','ChatStats for').rstrip('.txt')
@@ -69,15 +71,15 @@ def plot_graph():
 
     plt.figure('WhatStats')
 
-    plt.axes().xaxis.set_major_locator(tick.MultipleLocator(int(txt_divs.get())))
+    plt.axes().xaxis.set_major_locator(tick.MultipleLocator(int(txt_divs.get()))) #x-tick intervals
     plt.axes().xaxis.set_minor_locator(tick.MultipleLocator(1))
 
-    plt.plot(list(tot_ints.keys()),y,label="Total",alpha=0.2)
+    plt.plot(list(tot_ints.keys()),y,label="Total",alpha=0.2) #Plot total messages line chart
 
     for i in user_dict:
         tot_ints_copy=tot_ints.copy()
-        tot_ints_copy.update(user_dict[i])
-        plt.plot(list(tot_ints_copy.keys()),list(tot_ints_copy.values()),label=i)
+        tot_ints_copy.update(user_dict[i]) #Update total messages per user per day
+        plt.plot(list(tot_ints_copy.keys()),list(tot_ints_copy.values()),label=i) #Plot messages p/u/p/d
     plt.xticks(rotation=45)
     plt.ylabel('Frequency of messages')
     if len(user_dict)<=10:
@@ -85,7 +87,7 @@ def plot_graph():
         plt.legend()
     else:
         t0+=str(len(user_dict))+' Members in Group'
-        plt.legend(ncol=round(len(user_dict)/20),fontsize=8)
+        plt.legend(ncol=round(len(user_dict)/20),fontsize=8) #For better graph viewing
     plt.title(t0)
     plt.show()
 
@@ -111,6 +113,7 @@ def calc_interval(dlist):
         tot_ints[z.strftime('%b%d,%y')]=0
     return(tot_ints)
 
+#---Place widgets---#
 btn_open = Button(root, text ='Open', command = open_file)
 btn_open.place(x=20,y=20)
 txt_divs = Entry(root,width=3)
